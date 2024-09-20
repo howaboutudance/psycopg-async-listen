@@ -1,0 +1,15 @@
+# A docker compose creating a development dependencies:
+# - a postgres database
+version: '3.1'
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./data/.pg_data:/var/lib/postgresql/data:z

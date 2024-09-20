@@ -1,0 +1,11 @@
+{
+    // set the python interpreter to the virtual environment
+    "python.pythonPath": "${workspaceFolder}/.venv/bin/python",
+    "python.testing.pytestArgs": [
+        ".", "--ignore=data",
+        "--cov=src"// "-k", "not integration"
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true,
+    "python.REPL.enableREPLSmartSend": false,
+}

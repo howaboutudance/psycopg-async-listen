@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[metadata]
+name = "psycopg-async-listen"
+version = "0.1.0"
+authors = [
+    {name = "Michael Penhallegon", email = "mike@hematite.tech"}
+]
+requires-python = ">=3.11"
+
+[options.extras_require]
+dev = [
+    "ruff",
+    "pytest",
+    "pytest-cov",
+    "ipython",
+    "ipdb"
+]
+
+[options.packages.find]
+where = "src"
+
+
+[tool.pytest.ini_options]
+addopts = "-v --cov=src --cov-report=term-missing"
+markers = "integration: mark a test as an integration test"
+ignore = [
+    "data"
+]
+
+[tool.ruff]
+line-length = 120
+
+[tool.coverage.run]
+omit = [
+    "*/test/*",
+    "*/conftest.py",
+]

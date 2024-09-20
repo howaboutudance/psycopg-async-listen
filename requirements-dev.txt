@@ -1,0 +1,23 @@
+# wheel for faster installation
+wheel
+
+# base requirements
+# config
+dynaconf >= 3.1
+
+# database: postgresql
+psycopg[binary] >= 3.0
+sqlalchemy >= 2.0
+
+# testing
+pytest >= 6.0
+pytest-cov >= 3.0
+pytest-asyncio >= 0.15
+coverage >= 6.0
+
+# linting + formatting
+ruff >= 0.0
+
+# tox test runner
+tox >= 3.0
+

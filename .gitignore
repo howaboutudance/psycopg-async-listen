@@ -25,6 +25,14 @@ data/.pg_data/
 logs/
 *.log
 
+# tox config + virtualenvs
+.tox/
+
+# build artifacts
+dist/
+build/
+*.egg-info/
+
 # ignore config dev and prod yaml
 config/dev.yaml
 config/prod.yaml

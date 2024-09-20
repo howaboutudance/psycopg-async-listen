@@ -1,4 +1,4 @@
-# psycopg_async_listen
+# psycopg-async-listen
 
 ## Summary
 `psycopg-async-listen` is a Python project that demonstrates using the `pyscopg3` library to add `NOTIFY` notifications

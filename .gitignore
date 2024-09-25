@@ -1,37 +1,37 @@
 # a python project gitignore
 
 # python bytecode and cache
-__pycache__/
+__pycache__
 *.pyc
 *.pyo
 *.pyd
 
 # virtualenv
-venv/
-env/
+venv
+env
 .venv
 
 # pytest cache
-.pytest_cache/
-.ruff_cache/
+.pytest_cache
+.ruff_cache
 
 # postgresql data directory
-data/.pg_data/
+data/.pg_data
 
 # coverage
 .coverage
 
 # logs
-logs/
+logs
 *.log
 
 # tox config + virtualenvs
-.tox/
+.tox
 
 # build artifacts
-dist/
-build/
-*.egg-info/
+dist
+build
+*.egg-info
 
 # ignore config dev and prod yaml
 config/dev.yaml

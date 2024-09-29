@@ -1,12 +1,11 @@
 """Test for async listen for notifications."""
 
 import asyncio
-import psycopg.sql
-import pytest
-
 from unittest import mock
 
 import psycopg
+import psycopg.sql
+import pytest
 
 from psycopg_async_listen.execute import listen_for_notifications
 from psycopg_async_listen.util import help_send_notification

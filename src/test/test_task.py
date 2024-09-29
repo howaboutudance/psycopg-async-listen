@@ -1,19 +1,18 @@
 """Tests for muliple tasks's task module."""
 
 import asyncio
-
 from unittest import mock
 
 import pytest
 
 from multiple_tasks.task import (
+    AbstractTimer,
+    BreakTimer,
+    NamedTimer,
     SessionIterator,
+    WorkTimer,
     run_session,
     run_sessions,
-    WorkTimer,
-    BreakTimer,
-    AbstractTimer,
-    NamedTimer,
 )
 
 

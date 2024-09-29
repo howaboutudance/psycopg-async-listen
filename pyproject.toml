@@ -33,6 +33,11 @@ ignore = [
 [tool.ruff]
 line-length = 120
 
+[tool.ruff.lint]
+select = [
+    "E4", "E7", "E9", "F", 
+    "C", "W", "I"]
+
 [tool.coverage.run]
 omit = [
     "*/test/*",

@@ -38,3 +38,8 @@ omit = [
     "*/test/*",
     "*/conftest.py",
 ]
+
+[tool.coverage.report]
+exclude_also = [
+    "if __name__ == .__main__.:"
+]

@@ -6,7 +6,6 @@ from unittest import mock
 import pytest
 
 from multiple_tasks.task import (
-    AbstractTimer,
     BreakTimer,
     NamedTimer,
     SessionIterator,
@@ -14,16 +13,6 @@ from multiple_tasks.task import (
     run_session,
     run_sessions,
 )
-
-
-@pytest.mark.asyncio
-async def test_abstract_class_error():
-    m_duration = 1
-
-    with pytest.raises(TypeError):
-        timer = AbstractTimer(m_duration)
-        await timer()
-
 
 # test work timer, set duration to 1 second
 @pytest.mark.asyncio

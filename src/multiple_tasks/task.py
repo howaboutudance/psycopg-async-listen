@@ -4,7 +4,6 @@ import asyncio
 import datetime
 import logging
 from abc import ABC, abstractmethod
-from typing import Coroutine
 
 # Get the logger for this module
 _log = logging.getLogger(__name__)
@@ -23,9 +22,11 @@ _log = logging.getLogger(__name__)
 
 # Base class for a timer
 class AbstractTimer(ABC):
+    """A base class for a timer."""
+
     _completion_template: str
 
-    def __init__(self, duration: int):
+    def __init__(self, duration: float):
         """Initalize a timer with duration in minutes.
 
         :param duration: The duration in minutes
@@ -44,7 +45,9 @@ class AbstractTimer(ABC):
 # We are going to cratea NamedTimer that will take a name in addition to the duration
 # and will log the name of the timer when it starts and completes.
 class NamedTimer(AbstractTimer):
-    def __init__(self, name: str, duration: int):
+    """A timer with a name."""
+
+    def __init__(self, name: str, duration: float):
         """Initalize a named timer with duration in minutes.
 
         :param name: The name of the timer
@@ -60,18 +63,22 @@ class NamedTimer(AbstractTimer):
         """
         _log.info(f"Starting {self._name} for {self._duration} minutes")
         start_time = datetime.datetime.now()
-        await asyncio.sleep(self._duration * 60)
+        await asyncio.sleep(self._duration * 60.0)
         _log.info(f"{self._name.title()}'s {self._completion_template}")
         return self._name, start_time, datetime.timedelta(minutes=self._duration)
 
 
 # Concrete class for Work session, configurable with duration
 class WorkTimer(NamedTimer):
+    """a work timer."""
+
     _completion_template = "work session complete"
 
 
 # Concrete class for Break session, configurable with duration
 class BreakTimer(NamedTimer):
+    """A break timer."""
+
     _completion_template = "break session complete"
 
 
@@ -89,7 +96,9 @@ class BreakTimer(NamedTimer):
 # We are creaating async iterator that will yield alternating work and break timers
 # for each student
 class SessionIterator:
-    def __init__(self, name: str, work_duration: int, break_duration: int):
+    """An async iterator that yields alternating work and break timers."""
+
+    def __init__(self, name: str, work_duration: float, break_duration: float):
         """Initalize the session iterator.
 
         :param name: The name of the user
@@ -101,10 +110,11 @@ class SessionIterator:
         self._break_duration = break_duration
         self._next_timer_is_work = True
 
-    def __aiter__(self):
+    def __aiter__(self) -> "SessionIterator":
+        """Return the async iterator."""
         return self
 
-    async def __anext__(self) -> Coroutine:
+    async def __anext__(self) -> NamedTimer:
         """Get the next timer.
 
         if _next_timer_is_work is True, return a work timer
@@ -135,7 +145,7 @@ async def run_session(name: str, work_duration: int, break_duration: int):
 
 
 # Coroutine to run multiple session concurrently
-async def run_sessions(delay=float):
+async def run_sessions(delay: float = 5):
     """Run multiple sessions concurrently."""
     harneet = run_session("Harneet", 20, 5)
     ananya = run_session("Ananya", 25, 5)
@@ -146,7 +156,7 @@ async def run_sessions(delay=float):
         _log.info("Starting Harneet's session")
         harneet_task = asyncio.create_task(harneet)
         _log.info(f"Waiting for {delay} minutes before starting Ananya's session")
-        await asyncio.sleep(delay * 60)
+        await asyncio.sleep(delay * 60.0)
         _log.info("Starting Ananya's session")
         ananya_task = asyncio.create_task(ananya)
 

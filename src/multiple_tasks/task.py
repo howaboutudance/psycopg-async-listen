@@ -4,6 +4,7 @@ import asyncio
 import datetime
 import logging
 from abc import ABC, abstractmethod
+from typing import ClassVar
 
 # Get the logger for this module
 _log = logging.getLogger(__name__)
@@ -24,7 +25,7 @@ _log = logging.getLogger(__name__)
 class AbstractTimer(ABC):
     """A base class for a timer."""
 
-    _completion_template: str
+    _completion_template: ClassVar[str]
 
     def __init__(self, duration: float):
         """Initalize a timer with duration in minutes.
@@ -133,16 +134,15 @@ class SessionIterator:
 # - start a timer
 # - at the end of the timer, yield from the async iterator another timer
 # - repeat until the async iterator is exhausted, or interrupt or cancelled
-async def run_session(name: str, work_duration: int, break_duration: int):
+async def run_session(name: str, work_duration: float, break_duration: float):
     """Run a session with alternating work and break timers.
 
     :param name: The name of the user
     :param work_duration: The duration of the work session in minutes
     :param break_duration: The duration of the break session in minutes
     """
-    session = [await timer() async for timer in SessionIterator(name, work_duration, break_duration)]
-    return session
-
+    async for timer in SessionIterator(name, work_duration, break_duration):
+        yield timer()
 
 # Coroutine to run multiple session concurrently
 async def run_sessions(delay: float = 5):

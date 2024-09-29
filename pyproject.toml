@@ -29,6 +29,7 @@ markers = "integration: mark a test as an integration test"
 ignore = [
     "data"
 ]
+asyncio_default_fixture_loop_scope = "module"
 
 [tool.ruff]
 line-length = 120
@@ -36,7 +37,13 @@ line-length = 120
 [tool.ruff.lint]
 select = [
     "E4", "E7", "E9", "F", 
-    "C", "W", "I"]
+    "C", "W", "I", 
+    "D1", "D201", "D202", "D205", "D210", "D212", "D4",
+    "B"
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
 
 [tool.coverage.run]
 omit = [
@@ -45,6 +52,9 @@ omit = [
 ]
 
 [tool.coverage.report]
+exclude_lines = [
+    "@abstractmethod"
+]
 exclude_also = [
     "if __name__ == .__main__.:"
 ]

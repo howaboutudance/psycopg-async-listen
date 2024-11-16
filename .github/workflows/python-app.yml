@@ -41,4 +41,4 @@ jobs:
         DYNACONF_DATABASE: '{host="127.0.0.1", port=5432, user="postgres", name="postgres", password="${{ secrets.POSTGRES_PASSWORD }}"}' 
         DYNACONF_MQTT_BROKER: '{host="localhost", port=1883}'
       run: |
-        pytest
+        tox -e py

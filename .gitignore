@@ -36,3 +36,6 @@ build
 # ignore config dev and prod yaml
 config/dev.yaml
 config/prod.yaml
+
+# ingore .env file
+.env

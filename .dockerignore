@@ -1,0 +1,9 @@
+# Exclude cache and build artifact folders
+*/__pycache__/
+*/*.pyc
+*.pyo
+*.pyd
+*.whl
+*/*.egg-info/
+build/
+dist/

@@ -11,7 +11,7 @@ authors = [
 requires-python = ">=3.11"
 description = "A simple async bridge between MQTT and Postgres"
 license = "apache-2.0"
-depdenencies = [
+dependencies = [
     "aiomqtt ~= 2.0",
     "dynaconf >= 3.1",
     "psycopg[binary] >= 3.0",
